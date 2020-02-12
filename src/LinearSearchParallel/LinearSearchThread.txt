@@ -1,0 +1,24 @@
+package LinearSearchParallel;
+
+class LinearSearchThread extends Thread {
+	private int  key, cores, splitSize;
+	private int targetArray[];
+	
+	public LinearSearchThread(int[] arr, int key, int cores, int splitSize) {
+		targetArray = arr;
+		this.key = key;
+		this.cores = cores;
+		this.splitSize = splitSize;
+	}
+
+	public void run() {
+		for (int i = 0; i < targetArray.length; i++) {
+			if (key == targetArray[i]) {
+				//if found on core 2 , 2*25+i
+				int pos = cores*splitSize + i;
+				System.out.println("key is obtained at: " + pos);
+				break;
+			}
+		}
+	}
+}

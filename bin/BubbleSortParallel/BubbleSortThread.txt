@@ -1,0 +1,30 @@
+package BubbleSortParallel;
+
+class BubbleSortThread extends Thread {
+	private int cores, chunkSize;
+	private int targetArray[];
+	
+	public BubbleSortThread(int[] arr, int cores, int chunkSize) {
+		targetArray = arr;
+		this.cores = cores;
+		this.chunkSize = chunkSize;
+	}
+
+	public void run() {		
+		int n = targetArray.length;
+		
+        for (int i = 0; i < n-1; i++) {
+            for (int j = 0; j < n-i-1; j++) {
+                if (targetArray[j] > targetArray[j+1]) {
+                    int temp = targetArray[j];
+                    targetArray[j] = targetArray[j+1];
+                    targetArray[j+1] = temp;
+                }
+			}
+		}
+       
+        //System.out.println("thread no:"+cores);
+        //for(int i=0;i<n;i++)System.out.print(" "+targetArray[i]);
+        
+	}
+}
